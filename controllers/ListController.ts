@@ -1,9 +1,12 @@
-import restify = require('restify');
+import { Request, Response, Next, Server } from 'restify';
 
-class ListController{
-
-    getList(req: restify.Request, res: restify.Response, next: restify.Next) {
-        res.send('hello ' + req.params.name);
+export default class ListController{
+    constructor(server: Server) {
+        server.get('/list/:id', this.getList);
     }
 
+    public getList(req: Request, res: Response, next: Next) {
+        res.send('hello ' + req.params.id);
+    }
 }
+

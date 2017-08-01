@@ -1,5 +1,5 @@
 import restify = require('restify');
-import listController = require('./controllers/ListController');
+import ListController from './controllers/ListController';
 
 var listeningPort: any = process.env.PORT || 8080;
 
@@ -16,9 +16,11 @@ var server: restify.Server = restify.createServer();
 
 server.use(reqHandlers);
 
-
-server.get('/list/:id', listController.getList);
-
+var listController = new ListController(server);
+/*server.get('/list/:id', (req: restify.Request, res: restify.Response, next: restify.Next) => {
+    res.send('hello ' + req.params.id);
+    next();
+});*/
 
 server.listen(listeningPort, () => {
     console.log('%s listening on %s', server.name, server.url);

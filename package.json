@@ -1,23 +1,25 @@
 {
-  "name": "node-api",
+  "name": "speedywords",
   "version": "1.0.0",
-  "description": "Node JS experiment using Restify",
-  "main": "node-api.js",
+  "description": "Site words learning tool for pre-primary",
+  "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node ./dist/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sigratton/node-api.git"
+    "url": "git+https://github.com/sigratton/speedywords.git"
   },
   "author": "simon gratton",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sigratton/node-api/issues"
+    "url": "https://github.com/sigratton/speedywords/issues"
   },
-  "homepage": "https://github.com/sigratton/node-api#readme",
+  "homepage": "https://github.com/sigratton/speedywords#readme",
   "dependencies": {
-    "restify": "5.0.1"
+    "restify": "5.0.1",
+    "mongoose": "4.11.5"
   },
   "devDependencies": {
     "typescript": "2.4.1",
