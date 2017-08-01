@@ -11,7 +11,6 @@ var reqHandlers: restify.RequestHandler[] = [
     }
 ];
 
-
 var server: restify.Server = restify.createServer();
 
 server.use(reqHandlers);
