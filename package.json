@@ -1,0 +1,27 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "Node JS experiment using Restify",
+  "main": "node-api.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigratton/node-api.git"
+  },
+  "author": "simon gratton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sigratton/node-api/issues"
+  },
+  "homepage": "https://github.com/sigratton/node-api#readme",
+  "dependencies": {
+    "restify": "5.0.1"
+  },
+  "devDependencies": {
+    "typescript": "2.4.1",
+    "@types/node": "latest",
+    "@types/restify": "5.0.1"
+  }
+}
