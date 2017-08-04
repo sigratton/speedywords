@@ -18,12 +18,15 @@
   },
   "homepage": "https://github.com/sigratton/speedywords#readme",
   "dependencies": {
-    "restify": "5.0.1",
-    "mongoose": "4.11.5"
+    "restify": "^5.0.1",
+    "mongoose": "^4.11.5",
+    "q": "^1.5.0"
   },
   "devDependencies": {
-    "typescript": "2.4.1",
+    "typescript": "^2.4.1",
     "@types/node": "latest",
-    "@types/restify": "5.0.1"
+    "@types/restify": "^5.0.1",
+    "@types/mongoose": "^4.7.19",
+    "@types/q": "^1.0.3"
   }
 }

@@ -1,9 +1,11 @@
 import { Request, Response, Next, Server } from 'restify';
+import { Connection } from 'mongoose';
+import { WordList, IWordList } from '../models/WordList';
 
 export default class ListController{
-    constructor(server: Server) {
+    constructor(server: Server, db: Connection) {
         server.get('/list/:id', this.GetList);
-        server.post('/list/:id', this.PostList);
+        server.post('/list', this.PostList);
     }
 
     public GetList(req: Request, res: Response, next: Next) {
@@ -12,8 +14,19 @@ export default class ListController{
     }
 
     public PostList(req: Request, res: Response, next: Next) {
-        res.send(201);
-        next();
+        
+        let data = req.body || {};
+        let wordList = new WordList(data);
+        wordList.save()
+        .then((savedWordList: IWordList) => {
+            res.send(201, savedWordList);
+            next();
+        })        
+        .catch((err) => {
+            res.send(500, err);
+            next();
+        })
+        
     }
 
 }
