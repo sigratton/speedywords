@@ -7,6 +7,21 @@ export default class ListController{
         server.get('/list/:id', this.GetList);
         server.get('/list', this.GetList);
         server.post('/list', this.PostList);
+        server.put('/list', this.PutList);
+    }
+
+    private PutList(req: Request, res: Response, next: Next) {
+        let data: IWordList = req.body || {};
+        //let wordList = new WordList();
+        WordList.findOneAndUpdate({ name: data.name }, { $set: data })
+        .then((savedWordList: IWordList) => {
+            res.send(200, savedWordList);
+            next();
+        })        
+        .catch((err) => {
+            res.send(500, err);
+            next();
+        })
     }
 
     public GetList(req: Request, res: Response, next: Next) {
@@ -52,7 +67,7 @@ export default class ListController{
         .catch((err) => {
             res.send(500, err);
             next();
-        })
+        });
         
     }
 
