@@ -14,15 +14,27 @@ export default class ListController{
             res.send('hello ' + req.params.id);
             next();
         }
-        else {
-            WordList.find({}, (err: any, wordlist: IWordList[]) => {
+        else if(req.params.name) {
+            WordList.findOne({ name: req.params.name }, (err: any, wordList: IWordList) => {
                 if(err) {
                     res.send(500, err);
                     next();
                     return;
                 }
-                
-                res.send(wordlist);
+
+                res.send(wordList);
+                next();
+            });
+        }
+        else {
+            WordList.find({}, (err: any, wordLists: IWordList[]) => {
+                if(err) {
+                    res.send(500, err);
+                    next();
+                    return;
+                }
+
+                res.send(wordLists);
                 next();
             });
         }
