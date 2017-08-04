@@ -2,6 +2,7 @@ import * as restify from 'restify';
 import ListController from './controllers/ListController';
 import * as mongoose from 'mongoose';
 import * as q from 'q';
+import * as corsMiddleware from 'restify-cors-middleware';
 
 var listeningPort: any = process.env.PORT || 8080;
 
@@ -33,10 +34,18 @@ var server: restify.Server = restify.createServer({
     name: "speedywords"
 });
 
+const cors = corsMiddleware({
+    origins: ['http://localhost:4200'],
+});
+
+server.pre(cors.preflight);
+server.use(cors.actual);
+
 server.use(reqHandlers);
 server.use(restify.plugins.jsonBodyParser({ mapParams: true }));
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser({ mapParams: true }));
+
 
 var listController = new ListController(server, db);
 
