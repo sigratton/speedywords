@@ -115,6 +115,15 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
+echo start the server
+:: 5. start the app
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd !NPM_CMD! run start
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
