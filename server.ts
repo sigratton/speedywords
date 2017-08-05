@@ -5,6 +5,7 @@ import * as q from 'q';
 import * as corsMiddleware from 'restify-cors-middleware';
 
 var listeningPort: any = process.env.PORT || 8080;
+var mongoUri: any = process.env.MONGO_URI || 'mongodb://localhost/local';
 
 //-------------------------------------------------------------------------
 // process clean up
@@ -27,7 +28,7 @@ mongoose.connection.on('error', () => {
 
 (<any>mongoose).Promise = q.Promise;
 
-mongoose.connect('mongodb://localhost/local', { 
+mongoose.connect(mongoUri, { 
     useMongoClient: true,
     db: {
         bufferMaxEntries: 0
