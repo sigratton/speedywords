@@ -10,10 +10,10 @@
             "preLaunchTask": "tsc",
             "sourceMaps": true,
             "outFiles": [
-                "${workspaceRoot}/dist/**/*.js"
+                "${workspaceRoot}/**/*.js"
             ],
             "name": "Launch Program",
-            "program": "${workspaceRoot}/dist/server.js"
+            "program": "${workspaceRoot}/server.js"
         }
     ]
 }
