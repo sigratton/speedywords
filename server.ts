@@ -5,7 +5,7 @@ import * as q from 'q';
 import * as corsMiddleware from 'restify-cors-middleware';
 
 var listeningPort: any = process.env.PORT || 8080;
-var mongoUri: any = process.env.MONGO_URI || 'mongodb://localhost/local';
+var mongoUri: any = process.env.MONGO_URI || 'mongodb://localhost/speedywords';
 var corsSite: any = process.env.CORS_SITE || 'http://localhost:4200'
 
 //-------------------------------------------------------------------------
