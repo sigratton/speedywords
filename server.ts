@@ -6,6 +6,7 @@ import * as corsMiddleware from 'restify-cors-middleware';
 
 var listeningPort: any = process.env.PORT || 8080;
 var mongoUri: any = process.env.MONGO_URI || 'mongodb://localhost/local';
+var corsSite: any = process.env.CORS_SITE || 'http://localhost:4200'
 
 //-------------------------------------------------------------------------
 // process clean up
@@ -51,7 +52,7 @@ var server: restify.Server = restify.createServer({
 });
 
 const cors = corsMiddleware({
-    origins: ['http://localhost:4200'],
+    origins: [corsSite],
 });
 
 
