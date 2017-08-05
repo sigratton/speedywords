@@ -6,7 +6,11 @@
   "scripts": {
     "test": "test",
     "build": "tsc",
+    "prestart": "tsc",
     "start": "node ./dist/server.js"
+  },
+  "engines": {
+    "node": "6.9.x"
   },
   "repository": {
     "type": "git",
