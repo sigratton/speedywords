@@ -7,6 +7,16 @@ import * as corsMiddleware from 'restify-cors-middleware';
 var listeningPort: any = process.env.PORT || 8080;
 
 //-------------------------------------------------------------------------
+// process clean up
+process.on('SIGINT', () => {
+    mongoose.connection.close(() => {
+        console.log('database connection closed');
+        process.exit(0);
+    })
+});
+
+
+//-------------------------------------------------------------------------
 // set up the db
 mongoose.connection.once('open', () => {
   console.log('db connect open')  ;
@@ -17,7 +27,12 @@ mongoose.connection.on('error', () => {
 
 (<any>mongoose).Promise = q.Promise;
 
-mongoose.connect('mongodb://localhost/local', { useMongoClient: true });
+mongoose.connect('mongodb://localhost/local', { 
+    useMongoClient: true,
+    db: {
+        bufferMaxEntries: 0
+    }
+});
 var db = mongoose.connection;
 //-------------------------------------------------------------------------
 
@@ -36,6 +51,17 @@ var server: restify.Server = restify.createServer({
 
 const cors = corsMiddleware({
     origins: ['http://localhost:4200'],
+});
+
+
+// set up a middleware to return 500 if the database is not there
+server.pre((req: restify.Request, res: restify.Response, next: restify.Next) => {
+    if(mongoose.connection.readyState !== 1) {
+        res.send(500);
+        next(false);
+        return;
+    }
+    next();
 });
 
 server.pre(cors.preflight);
