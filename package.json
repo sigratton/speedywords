@@ -2,7 +2,7 @@
   "name": "speedywords",
   "version": "1.0.0",
   "description": "Site words learning tool for pre-primary",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "test",
     "build": "tsc",
