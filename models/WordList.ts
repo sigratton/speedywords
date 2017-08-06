@@ -2,8 +2,7 @@ import * as mongoose from 'mongoose';
 import { WordSchema, IWord } from './Word';
 
 var options: mongoose.SchemaOptions = {
-    minimize: false,
-    bufferCommands: false
+    minimize: false
 };
 
 var definition: mongoose.SchemaDefinition = {

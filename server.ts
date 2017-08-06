@@ -32,7 +32,7 @@ mongoose.connection.on('error', () => {
 mongoose.connect(mongoUri, { 
     useMongoClient: true,
     db: {
-        bufferMaxEntries: 0
+        bufferMaxEntries: 5
     }
 });
 var db = mongoose.connection;
