@@ -59,6 +59,7 @@ const cors = corsMiddleware({
 // set up a middleware to return 500 if the database is not there
 server.pre((req: restify.Request, res: restify.Response, next: restify.Next) => {
     if(mongoose.connection.readyState !== 1) {
+        console.log('db connection dead sending 500');
         res.send(500);
         next(false);
         return;
