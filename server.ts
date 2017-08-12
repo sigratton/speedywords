@@ -54,10 +54,10 @@ mongoose.connection.on('error', () => {
 
 mongoose.connect(mongoUri, { 
     useMongoClient: true,
-    db: {
-        bufferMaxEntries: 5
-    }
-});
+    poolSize: 2,
+    keepAlive: 1,
+    bufferMaxEntries: 5
+} as any);
 var db = mongoose.connection;
 //-------------------------------------------------------------------------
 
