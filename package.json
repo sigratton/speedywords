@@ -24,6 +24,9 @@
   "homepage": "https://github.com/sigratton/speedywords#readme",
   "dependencies": {
     "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-azure-ad": "^3.0.8",
+    "passport-http": "^0.3.0", 
     "q": "^1.5.0",
     "restify": "^5.0.1",
     "restify-cors-middleware": "^1.0.1"
@@ -33,6 +36,7 @@
     "@types/node": "latest",
     "@types/restify": "^5.0.1",
     "@types/mongoose": "^4.7.19",
-    "@types/q": "^1.0.3"
+    "@types/q": "^1.0.3",
+    "@types/passport": "0.3.3"
   }
 }

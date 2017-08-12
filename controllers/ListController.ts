@@ -1,16 +1,19 @@
-import { Request, Response, Next, Server } from 'restify';
+import { Request, Response, Next, Server, RequestHandlerType } from 'restify';
 import { Connection } from 'mongoose';
 import { WordList, IWordList } from '../models/WordList';
+import * as passport from 'passport';
 
 export default class ListController{
+
     constructor(server: Server, db: Connection) {
         server.get('/list/:id', this.GetList);
         server.get('/list', this.GetList);
-        server.post('/list', this.PostList);
-        server.put('/list', this.PutList);
+        server.post('/list', passport.authenticate('basic', { session:false }) as any, this.PostList);
+        server.put('/list', passport.authenticate('basic', { session:false }) as any, this.PutList);
     }
 
     private PutList(req: Request, res: Response, next: Next) {
+        
         let data: IWordList = req.body || {};
         //let wordList = new WordList();
         WordList.findOneAndUpdate({ name: data.name }, { $set: data })
@@ -56,7 +59,7 @@ export default class ListController{
     }
 
     public PostList(req: Request, res: Response, next: Next) {
-        
+
         let data = req.body || {};
         let wordList = new WordList(data);
         wordList.save()
@@ -72,4 +75,5 @@ export default class ListController{
     }
 
 }
+
 
